@@ -11,10 +11,9 @@ function getDatafromServer(){
         url: "/csp",
         cache: false,
     }).done(function(data){
-
+        console.log(data);
         entry = data;
         assignDataToRow(entry);
-
     })
 };
 
@@ -43,4 +42,25 @@ button.addEventListener('click', function(e){
     e.preventDefault();
     tableContent.innerHTML= " ";
     getDatafromServer();
+});
+
+
+$("#searchField").submit(function(event){
+
+
+    var url = "/test";
+
+    $.ajax({
+        type:"POST",
+        url: url,
+        data: $("#searchField").serialize(),
+        success: function(data){
+            console.log(data);
+            tableContent.innerHTML= " ";
+            entry = data;
+            assignDataToRow(data);
+        }
+    });
+
+    event.preventDefault();
 });

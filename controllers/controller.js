@@ -1,6 +1,7 @@
 var url = require('url');
 var Report =  require('../models/model');
 
+
 exports.list_all_reports = function(req, res) {
     console.log('request');
     Report.find({}, function(err, report) {
@@ -19,7 +20,7 @@ exports.list_all_websites = function(req,res){
            result.push(obj);
         })
         res.json(result);
-    })
+    });
 };
 
 exports.create_a_report = function(req, res) {
@@ -33,7 +34,23 @@ exports.create_a_report = function(req, res) {
     });
 };
 
-// get csp Object from Request
+// filter reports by HTML input form field
+exports.find = function(req,res) {
+    const options = {}
+    if (req.body.domain) options.domain = req.body.domain;
+    if (req.body.document) options.document = req.body.document;
+    if (req.body["blocked-uri"]) options["blocked-uri"]= req.body["blocked-uri"];
+    if (req.body.violation) options.violation = req.body.violation;
+    if (req.body.date) options.date = req.body.date;
+
+    Report.find(options, function(err, report){
+        if (err) res.send(err);
+        res.json(report);
+    })
+};
+
+
+// get csp Object from Request and extract domain name from URL
 function extract(req,res) {
     var obj ={};
 
@@ -41,7 +58,8 @@ function extract(req,res) {
     var document = req.body["document-uri"];
     var blocked = req.body["blocked-uri"];
     var violation  = req.body["violated-directive"];
-    var date = req.body["date"];
+    var date = new Date().toLocaleString().substr(0,9);
+
 
 
     var domain = url.parse(document).hostname;

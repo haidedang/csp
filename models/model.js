@@ -1,7 +1,8 @@
 var mongoose = require('mongoose');
 var url = require('url');
 
-mongoose.connect('mongodb://localhost:27017/csp');
+mongoose.connect('mongodb://localhost:27017/csp', { useMongoClient: true });
+mongoose.set('debug', true);
 
 var cspSchema = new mongoose.Schema({
     "domain": {
