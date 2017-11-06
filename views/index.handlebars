@@ -1,0 +1,49 @@
+<h3>CSP Reports</h3>
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
+<form method="POST" action="/filter">
+    <table id="csp">
+        <tbody id="tableHead">
+            <tr class="filterRow">
+                <td>
+                    <input type="text" name="domain"/>
+                </td>
+                <td>
+                    <input type="text" name="document"/>
+                </td>
+                <td>
+                    <input type="text" name="blocked-uri"/>
+                </td>
+                <td>
+                    <input type="text" name="violation"/>
+                </td>
+                <td>
+                    <input type="text" name="date"/>
+                </td>
+                <input type="submit">
+            </tr>
+            <tr class="tableHeader">
+                <th>domain</th>
+                <th>document-URI</th>
+                <th>blocked-uri</th>
+                <th>violated-directive</th>
+                <th>date</th>
+            </tr>
+        </tbody>
+        <tbody id="tableContent">
+
+        </tbody>
+        <tr >
+
+        </tr>
+
+
+    </table>
+</form>
+
+<button id="load">load</button>

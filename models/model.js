@@ -1,0 +1,29 @@
+var mongoose = require('mongoose');
+var url = require('url');
+
+mongoose.connect('mongodb://localhost:27017/csp');
+
+var cspSchema = new mongoose.Schema({
+    "domain": {
+        type: String
+    },
+    "document-uri": {
+        type: String
+    },
+    "blocked-uri": {
+        type: String
+    },
+    "violated-directive": {
+        type: String
+    },
+    "original-policy": {
+        type: String
+    },
+    "date": {
+        type: String
+    }
+});
+
+module.exports = mongoose.model('cspReport', cspSchema);
+
+
