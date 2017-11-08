@@ -1,18 +1,18 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
-var report = require('../controllers/controller');
+let report = require('../controllers/controller');
 
 // router.post('/', function(req, res){
 //         console.log(req.body);
 //     });
 
-router.post('/csp', report.create_a_report);
-router.get('/csp', report.list_all_reports);
-router.get('/website', report.list_all_websites);
+router.post('/csp', report.createReport);
+router.get('/csp', report.listAllReports);
+router.get('/website', report.listAllWebsites);
 router.post('/test', report.find);
 
-router.get('/', function(req, res, next){
+router.get('/', (req, res, next) => {
     res.render('index');
 });
 

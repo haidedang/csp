@@ -1,10 +1,10 @@
-var mongoose = require('mongoose');
-var url = require('url');
+let mongoose = require('mongoose');
+let url = require('url');
 
-mongoose.connect('mongodb://localhost:27017/csp', { useMongoClient: true });
+mongoose.connect('mongodb://localhost:27017/cspReports', { useMongoClient: true });
 mongoose.set('debug', true);
 
-var cspSchema = new mongoose.Schema({
+let cspSchema = new mongoose.Schema({
     "domain": {
         type: String
     },

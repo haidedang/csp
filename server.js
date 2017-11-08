@@ -1,13 +1,13 @@
-var express = require('express'),
+let express = require('express'),
     path = require('path'),
     exphbs = require('express-handlebars'),
     port = process.env.PORT || 4000;
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+let cookieParser = require('cookie-parser');
+let bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
+let routes = require('./routes/index');
 
-var app = express();
+let app = express();
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));

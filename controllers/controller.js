@@ -1,8 +1,8 @@
-var url = require('url');
-var Report =  require('../models/model');
+let url = require('url');
+let Report =  require('../models/model');
 
 
-exports.list_all_reports = function(req, res) {
+exports.listAllReports = (req, res) => {
     console.log('request');
     Report.find({}, function(err, report) {
         if (err) res.send(err);
@@ -10,12 +10,12 @@ exports.list_all_reports = function(req, res) {
     })
 };
 
-exports.list_all_websites = function(req,res){
-    Report.find({}, function(err, report) {
+exports.listAllWebsites = (req,res) => {
+    Report.find({}, (err, report) => {
         if (err) res.send (err);
-        var result = [];
-        report.forEach(function(item){
-           var obj = {};
+        let result = [];
+        report.forEach( (item) => {
+           let obj = {};
            obj["document-uri"] = item["document-uri"];
            result.push(obj);
         })
@@ -23,10 +23,10 @@ exports.list_all_websites = function(req,res){
     });
 };
 
-exports.create_a_report = function(req, res) {
+exports.createReport = (req, res) => {
 
-    var new_report = new Report(extract(req,res));
-    new_report.save(function(err, report) {
+    let new_report = new Report(extract(req,res));
+    new_report.save((err, report) => {
         if (err)
             res.send(err);
         res.json(report);
@@ -35,7 +35,7 @@ exports.create_a_report = function(req, res) {
 };
 
 // filter reports by HTML input form field
-exports.find = function(req,res) {
+exports.find = (req, res) => {
     const options = {}
     if (req.body.domain) options.domain = req.body.domain;
     if (req.body.document) options.document = req.body.document;
@@ -43,7 +43,7 @@ exports.find = function(req,res) {
     if (req.body.violation) options.violation = req.body.violation;
     if (req.body.date) options.date = req.body.date;
 
-    Report.find(options, function(err, report){
+    Report.find(options, (err, report) => {
         if (err) res.send(err);
         res.json(report);
     })
@@ -51,18 +51,18 @@ exports.find = function(req,res) {
 
 
 // get csp Object from Request and extract domain name from URL
-function extract(req,res) {
-    var obj ={};
+function extract (req,res) {
+    let obj ={};
 
 
-    var document = req.body["document-uri"];
-    var blocked = req.body["blocked-uri"];
-    var violation  = req.body["violated-directive"];
-    var date = new Date().toLocaleString().substr(0,9);
+    let document = req.body["document-uri"];
+    let blocked = req.body["blocked-uri"];
+    let violation  = req.body["violated-directive"];
+    let date = new Date().toLocaleString().substr(0,9);
 
 
 
-    var domain = url.parse(document).hostname;
+    let domain = url.parse(document).hostname;
 
     obj["domain"] = domain;
     obj["document-uri"] = document;

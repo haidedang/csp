@@ -1,17 +1,21 @@
 var entry = [];
-var tableContent;
+var tableContent = document.getElementById('tableContent');
+var index= 0;
+var buttonRight= document.getElementById("right");
+var buttonLeft= document.getElementById("left");
+var chunkSize = 5;
 
-document.addEventListener("DOMContentLoaded", function(){
-    getDatafromServer();
+document.addEventListener("DOMContentLoaded", () => {
+    getDataFromServer();
 });
 
-function getDatafromServer(){
+function getDataFromServer(){
     $.ajax({
         type: "GET",
         url: "/csp",
         cache: false,
-    }).done(function(data){
-        console.log(data);
+    }).done( (data) => {
+
         entry = data;
         assignDataToRow(entry);
     })
@@ -19,42 +23,103 @@ function getDatafromServer(){
 
 function assignDataToRow(data){
 
+    data.forEach( (item) => {
 
-    data.forEach(function(item){
-
-        tableContent = document.getElementById('tableContent');
-        var tr = document.createElement('tr');
-
+        let tr = document.createElement('tr');
 
         Object.entries(item).forEach(([key, value]) => {
             if (key =="_id") return true;
-            var td = document.createElement('td');
-            td.innerHTML = value;
-            tr.append(td);
+            if(key=="__v") return true;
+
+                let td = document.createElement('td');
+                td.innerHTML = value;
+                tr.append(td);
         });
 
         tableContent.append(tr);
+        show(index, chunkSize);
     })
+
 }
 
-var button = document.getElementById("load");
-button.addEventListener('click', function(e){
+function chunk (arr, len) {
+
+    var chunks = [],
+        i = 0,
+        n = arr.length;
+
+    while (i < n) {
+        chunks.push(arr.slice(i, i += len));
+    }
+
+    return chunks;
+}
+
+
+// Select option doesnt work properly yet!!
+
+// var limit = document.getElementById('limit');
+// limit.addEventListener('change', function(){
+//     chunkSize = this.value;
+//     show(index, this.value);
+// });
+
+
+function show(index, chSize) {
+
+    console.log(chSize);
+
+    var rows = Array.from(tableContent.childNodes).splice(1);  // push all rows into an array
+
+    var arr = chunk (rows, chSize); // split array into array groups size of chunk size
+
+    arr.forEach((ch)=> {
+        // ch[0].style.display='none';
+        ch.forEach((e) => {
+            e.style.display = 'table-row';
+        });
+    });
+    var shownArr = arr.splice(index, 1);
+
+    arr.forEach((ch)=> {
+        ch.forEach((e) => {
+            e.style.display = 'none';
+        });
+    });
+}
+
+
+buttonRight.addEventListener("click", (e)=> {
     e.preventDefault();
-    tableContent.innerHTML= " ";
-    getDatafromServer();
+    index = index +1 ;
+    show(index, chunkSize);
+});
+
+buttonLeft.addEventListener("click", (e)=> {
+    e.preventDefault();
+    index = index - 1 ;
+    show(index, chunkSize) ;
 });
 
 
-$("#searchField").submit(function(event){
+let button = document.getElementById("load");
+button.addEventListener('click', (e) => {
+    e.preventDefault();
+    tableContent.innerHTML= " ";
+    getDataFromServer();
+});
 
 
-    var url = "/test";
+$("#searchField").submit( (event) => {
+
+
+    let url = "/test";
 
     $.ajax({
         type:"POST",
         url: url,
         data: $("#searchField").serialize(),
-        success: function(data){
+            success: (data) => {
             console.log(data);
             tableContent.innerHTML= " ";
             entry = data;
