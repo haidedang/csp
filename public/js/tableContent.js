@@ -1,9 +1,9 @@
-var entry = [];
-var tableContent = document.getElementById('tableContent');
-var index= 0;
-var buttonRight= document.getElementById("right");
-var buttonLeft= document.getElementById("left");
-var chunkSize = 5;
+let entry = [];
+let tableContent = document.getElementById('tableContent');
+let index= 0;
+let buttonRight= document.getElementById("right");
+let buttonLeft= document.getElementById("left");
+let chunkSize = 5;
 
 document.addEventListener("DOMContentLoaded", () => {
     getDataFromServer();
@@ -44,7 +44,7 @@ function assignDataToRow(data){
 
 function chunk (arr, len) {
 
-    var chunks = [],
+    let chunks = [],
         i = 0,
         n = arr.length;
 
@@ -56,22 +56,22 @@ function chunk (arr, len) {
 }
 
 
-// Select option doesnt work properly yet!!
+//Select option doesnt work properly yet!!
 
-// var limit = document.getElementById('limit');
-// limit.addEventListener('change', function(){
-//     chunkSize = this.value;
-//     show(index, this.value);
-// });
+let limit = document.getElementById('limit');
+limit.addEventListener('change', function(){
+    chunkSize = this.value;
+    show(index, this.value);
+});
 
 
 function show(index, chSize) {
 
     console.log(chSize);
 
-    var rows = Array.from(tableContent.childNodes).splice(1);  // push all rows into an array
+    let rows = Array.from(tableContent.childNodes).splice(1);  // push all rows into an array
 
-    var arr = chunk (rows, chSize); // split array into array groups size of chunk size
+    let arr = chunk (rows, chSize); // split array into array groups size of chunk size
 
     arr.forEach((ch)=> {
         // ch[0].style.display='none';
@@ -79,7 +79,7 @@ function show(index, chSize) {
             e.style.display = 'table-row';
         });
     });
-    var shownArr = arr.splice(index, 1);
+    let shownArr = arr.splice(index, 1);
 
     arr.forEach((ch)=> {
         ch.forEach((e) => {
@@ -129,3 +129,5 @@ $("#searchField").submit( (event) => {
 
     event.preventDefault();
 });
+
+//@TODO frontend aufpeppen, READme.MD, Code refactoring, SELECT FIELD, AdminLTE

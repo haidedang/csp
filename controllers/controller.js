@@ -1,3 +1,4 @@
+//@TODO const
 let url = require('url');
 let Report =  require('../models/model');
 
@@ -51,14 +52,15 @@ exports.find = (req, res) => {
 
 
 // get csp Object from Request and extract domain name from URL
-function extract (req,res) {
+//jslint  , prettier
+function extract (req, res) {
     let obj ={};
 
 
     let document = req.body["document-uri"];
     let blocked = req.body["blocked-uri"];
     let violation  = req.body["violated-directive"];
-    let date = new Date().toLocaleString().substr(0,9);
+    let date = new Date().toLocaleString().substr(0,9);  // @TODO date object
 
 
 
