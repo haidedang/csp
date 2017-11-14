@@ -14,8 +14,13 @@
   },
   "dependencies": {
     "cookie-parser": "^1.4.3",
+    "datatables.net": "^1.10.16",
+    "datatables.net-bs": "^1.10.16",
+    "datatables.net-dt": "^1.10.16",
+    "dateformat": "^3.0.2",
     "express": "^4.16.2",
     "express-handlebars": "^3.0.0",
+    "jquery": "^3.2.1",
     "mongoose": "^4.12.5",
     "url": "^0.11.0"
   }

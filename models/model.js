@@ -1,5 +1,5 @@
-let mongoose = require('mongoose');
-let url = require('url');
+const mongoose = require('mongoose');
+const url = require('url');
 
 mongoose.connect('mongodb://localhost:27017/cspReports', { useMongoClient: true });
 mongoose.set('debug', true);

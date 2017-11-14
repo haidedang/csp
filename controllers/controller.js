@@ -1,6 +1,7 @@
 //@TODO const
-let url = require('url');
-let Report =  require('../models/model');
+const url = require('url');
+const Report =  require('../models/model');
+const dateFormat = require('dateformat');
 
 
 exports.listAllReports = (req, res) => {
@@ -57,11 +58,12 @@ function extract (req, res) {
     let obj ={};
 
 
-    let document = req.body["document-uri"];
-    let blocked = req.body["blocked-uri"];
-    let violation  = req.body["violated-directive"];
-    let date = new Date().toLocaleString().substr(0,9);  // @TODO date object
-
+    let document = req.body["csp-report"]["document-uri"];
+    let blocked = req.body["csp-report"]["blocked-uri"];
+    let violation  = req.body["csp-report"]["violated-directive"];
+    let date = new Date();
+    // let date = new Date().toLocaleString().substr(0,9);
+    // @TODO date object
 
 
     let domain = url.parse(document).hostname;
@@ -70,7 +72,7 @@ function extract (req, res) {
     obj["document-uri"] = document;
     obj["blocked-uri"]= blocked;
     obj["violated-directive"]= violation;
-    obj["date"]= date;
+    obj["date"]= dateFormat(date);
 
     return obj;
 }

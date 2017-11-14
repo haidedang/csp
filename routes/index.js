@@ -1,7 +1,7 @@
-let express = require('express');
-let router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-let report = require('../controllers/controller');
+const report = require('../controllers/controller');
 
 // router.post('/', function(req, res){
 //         console.log(req.body);
@@ -13,7 +13,8 @@ router.get('/website', report.listAllWebsites);
 router.post('/test', report.find);
 
 router.get('/', (req, res, next) => {
-    res.render('index');
+    console.log('request');
+    res.render('table');
 });
 
 

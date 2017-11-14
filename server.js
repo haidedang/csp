@@ -1,17 +1,17 @@
-let express = require('express'),
+const express = require('express'),
     path = require('path'),
     exphbs = require('express-handlebars'),
     port = process.env.PORT || 4000;
-let cookieParser = require('cookie-parser');
-let bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-let routes = require('./routes/index');
+const routes = require('./routes/index');
 
 let app = express();
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout:'layout'}));
+app.engine('handlebars', exphbs({defaultLayout:'layoutDataTables'}));
 app.set('view engine', 'handlebars');
 
 // uncomment after placing your favicon in /public
