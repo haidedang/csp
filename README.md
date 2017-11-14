@@ -35,18 +35,23 @@ Everything is set up now! Start the server with:
 $ npm run start  
 ```
 
+type in following url to render the webpage: 
+
+```
+http://localhost:4000  
+```
+
 To send an example violation report in your terminal to the API, use this curl request: 
 
 ```
-$ curl -H "Content-Type: application/json" -X POST -d '{
-    "__v": 0,
-    "domain": "youtube.com",
-    "document-uri": "http://youtube.com/Anderson_Peter.html",
-    "blocked-uri": "http://peterg.com/css/styles.css",
-    "violated-directive": "style-src cdn.example.com",
-    "date": "Tue Nov 14 2017 12:04:51",
-    "_id": "5a0acdd3c29e28034474d364"
-}' http://localhost:4000/csp
+curl -H "Content-Type: application/json" -X POST -d '{ "csp-report": {
+>     "document-uri": "http://youtube.com/Anderson_Peter.html",
+>     "referrer": "",
+>     "blocked-uri": "http://youtube.com/css/styles.css",
+>     "violated-directive": "style-src cdn.example.com",
+>     "original-policy": "default-src 'none'; style-src cdn.example.com; report-uri /csp"
+>   }
+> }' http://localhost:4000/csp
 
 ```
 ## Contributors
