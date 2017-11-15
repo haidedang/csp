@@ -45,13 +45,13 @@ To send an example violation report in your terminal to the API, use this curl r
 
 ```
 curl -H "Content-Type: application/json" -X POST -d '{ "csp-report": {
->     "document-uri": "http://youtube.com/Anderson_Peter.html",
->     "referrer": "",
->     "blocked-uri": "http://youtube.com/css/styles.css",
->     "violated-directive": "style-src cdn.example.com",
->     "original-policy": "default-src 'none'; style-src cdn.example.com; report-uri /csp"
->   }
-> }' http://localhost:4000/csp
+     "document-uri": "http://youtube.com/Anderson_Peter.html",
+     "referrer": "",
+     "blocked-uri": "http://youtube.com/css/styles.css",
+     "violated-directive": "style-src cdn.example.com",
+     "original-policy": "default-src 'none'; style-src cdn.example.com; report-uri /csp"
+   }
+ }' http://localhost:4000/csp
 
 ```
 ## Contributors
