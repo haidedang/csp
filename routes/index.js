@@ -14,7 +14,7 @@ router.post('/test', report.find);
 
 router.get('/', (req, res, next) => {
     console.log('request');
-    res.render('table');
+    res.render('tableContent');
 });
 
 
