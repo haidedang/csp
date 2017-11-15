@@ -11,12 +11,12 @@ let app = express();
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.engine('handlebars', exphbs({defaultLayout:'layoutDataTables'}));
+app.engine('handlebars', exphbs({defaultLayout: 'layoutDataTables'}));
 app.set('view engine', 'handlebars');
 
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 // set static, public stuff assesible to the browser

@@ -1,25 +1,29 @@
-//@TODO const
+/**
+ * ------CONTROLLER --------
+ *  providing methods to interact with database
+ */
+
 const url = require('url');
-const Report =  require('../models/model');
+const Report = require('../models/model');
 const dateFormat = require('dateformat');
 
 
 exports.listAllReports = (req, res) => {
     console.log('request');
-    Report.find({}, function(err, report) {
+    Report.find({}, function (err, report) {
         if (err) res.send(err);
         res.json(report);
     })
 };
 
-exports.listAllWebsites = (req,res) => {
+exports.listAllWebsites = (req, res) => {
     Report.find({}, (err, report) => {
-        if (err) res.send (err);
+        if (err) res.send(err);
         let result = [];
-        report.forEach( (item) => {
-           let obj = {};
-           obj["document-uri"] = item["document-uri"];
-           result.push(obj);
+        report.forEach((item) => {
+            let obj = {};
+            obj["document-uri"] = item["document-uri"];
+            result.push(obj);
         })
         res.json(result);
     });
@@ -27,7 +31,7 @@ exports.listAllWebsites = (req,res) => {
 
 exports.createReport = (req, res) => {
 
-    let new_report = new Report(extract(req,res));
+    let new_report = new Report(extract(req, res));
     new_report.save((err, report) => {
         if (err)
             res.send(err);
@@ -41,7 +45,7 @@ exports.find = (req, res) => {
     const options = {}
     if (req.body.domain) options.domain = req.body.domain;
     if (req.body.document) options.document = req.body.document;
-    if (req.body["blocked-uri"]) options["blocked-uri"]= req.body["blocked-uri"];
+    if (req.body["blocked-uri"]) options["blocked-uri"] = req.body["blocked-uri"];
     if (req.body.violation) options.violation = req.body.violation;
     if (req.body.date) options.date = req.body.date;
 
@@ -52,15 +56,14 @@ exports.find = (req, res) => {
 };
 
 
-// get csp Object from Request and extract domain name from URL
-//jslint  , prettier
-function extract (req, res) {
-    let obj ={};
+
+function extract(req, res) {
+    let obj = {};
 
 
     let document = req.body["csp-report"]["document-uri"];
     let blocked = req.body["csp-report"]["blocked-uri"];
-    let violation  = req.body["csp-report"]["violated-directive"];
+    let violation = req.body["csp-report"]["violated-directive"];
     let original = req.body["csp-report"]["original-policy"];
     let date = new Date();
     // let date = new Date().toLocaleString().substr(0,9);
@@ -71,10 +74,10 @@ function extract (req, res) {
 
     obj["domain"] = domain;
     obj["document-uri"] = document;
-    obj["blocked-uri"]= blocked;
-    obj["violated-directive"]= violation;
-    obj["original-policy"]= original;
-    obj["date"]= dateFormat(date);
+    obj["blocked-uri"] = blocked;
+    obj["violated-directive"] = violation;
+    obj["original-policy"] = original;
+    obj["date"] = dateFormat(date);
 
     return obj;
 }
