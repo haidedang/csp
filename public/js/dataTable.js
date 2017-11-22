@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('#csp').DataTable( {
+    $('#csp').dataTable( {
         "ajax": {
             "url": "/csp",
             "dataSrc": ""
@@ -11,6 +11,7 @@ $(document).ready(function() {
             { "data": "violated-directive" },
             { "data": "original-policy"},
             { "data": "date" }
-        ]
+        ],
+        "aLengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]]
     } );
 } );

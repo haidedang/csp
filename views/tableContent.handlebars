@@ -1,66 +1,26 @@
-<div class="box">
-    <div class="box-header">
-        <h1 >CSP Reports</h1>
-    </div>
-    <!--box-header-->
-    <div class="box-body">
-        <table id="csp" class="table table-bordered table-striped">
-            <thead>
-            <tr>
-                <th>domain</th>
-                <th>document</th>
-                <th>blocked-uri</th>
-                <th>violation</th>
-                <th>original-policy</th>
-                <th>date</th>
-            </tr>
-            </thead>
-            <tbody id="tableContent">
-            </tbody>
-            <tr>
-            </tr>
-        </table>
-    </div>
-</div>
-
-<div class="box box-danger">
-    <div class="box-header with-border">
-        <h3 class="box-title">Donut Chart</h3>
-
-        <div class="box-tools pull-right">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+<div class="container">
+    <div class="box">
+        <div class="box-header">
+            <h1>CSP Reports</h1>
+        </div>
+        <!--box-header-->
+        <div class="box-body">
+            <table id="csp" class="table-responsive table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th>domain</th>
+                    <th>document</th>
+                    <th>blocked-uri</th>
+                    <th>violation</th>
+                    <th>original-policy</th>
+                    <th>date</th>
+                </tr>
+                </thead>
+                <tbody id="tableContent">
+                </tbody>
+                <tr>
+                </tr>
+            </table>
         </div>
     </div>
-    <div class="box-body">
-        <canvas id="myChart" style="height:250px"></canvas>
-    </div>
-    <!-- /.box-body -->
 </div>
-
-
-<script>
-
-    console.log(reports.listAllReports);
-
-    var ctx = document.getElementById("myChart").getContext('2d');
-    var data = {
-        datasets: [{
-            data: [10, 20, 30]
-        }],
-
-// These labels appear in the legend and in the tooltips when hovering different arcs
-        labels: [
-            'Red',
-            'Yellow',
-            'Blue'
-        ]
-    };
-    var myDoughnutChart = new Chart(ctx, {
-        type: 'doughnut',
-        data: data,
-        options: {}
-    });
-
-</script>

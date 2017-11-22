@@ -40,6 +40,134 @@ exports.createReport = (req, res) => {
     });
 };
 
+
+/**
+ *
+ * @return Array of  all Objects with distinctive domain name
+ */
+exports.findDistinctValues = (req, res) => {
+    let arr = [];
+    Report.distinct('domain', (err, report) => {
+        console.log(report);
+        let i = 0;
+
+        let length = 0;
+        let l = report.length;
+
+        function call(i) {
+            getData(report[i]).then((item) => {
+
+                length = item.length;
+                let obj = {item: item[0]["domain"], amount: length};
+                arr.push(obj);
+
+                i++;
+
+                if (i < report.length) {
+                    call(i);
+                } else res.send(arr);
+            })
+            ;
+        }
+        call(0);
+    })
+};
+
+/**
+ *
+ * @param obj
+ * @returns {Promise}
+ */
+
+function getData(obj){
+    return new Promise((resolve, reject) => {
+        Report.find({'domain': obj}, (err, result) => {
+            resolve(result);
+        });
+    })
+}
+
+exports.findDistinctReportsByToday = (req, res) => {
+    let arr = [];
+    let date = new Date();
+    let dateformat = dateFormat(date);
+
+    Report.distinct('domain', (err, report) => {
+        console.log(report);
+        let i = 0;
+
+        let length = 0;
+        let l = report.length;
+
+        function call(i) {
+            getData(report[i]).then((item) => {
+
+                let object = {};
+
+                let n = 0;
+
+                item.forEach((obj) => {
+
+                    let a =  dateformat.toString().split(' ',4);
+                    let b = obj.date.split(' ', 4);
+
+                    if (arraysEqual(a,b)){
+                        n= n+1;
+                        object = {item: obj["domain"], amount: n};
+                    }
+                });
+
+                arr.push(object);
+                i++;
+
+                if (i < report.length) {
+                    call(i);
+                } else {
+                     res.send(arr);
+                }
+            })
+            ;
+        }
+        call(0);
+    })
+};
+
+
+/**
+ *
+ * @param obj
+ * @param list
+ * @returns {boolean}
+ */
+function containsObject(obj, list) {
+    let i;
+    for (i = 0; i < list.length; i++) {
+        if (list[i] === obj) {
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/**
+ * Check if two arrays are identical
+ * @param arr1
+ * @param arr2
+ * @returns {boolean}
+ */
+
+function arraysEqual(arr1, arr2) {
+    if(arr1.length !== arr2.length)
+        return false;
+    for(let i = arr1.length; i--;) {
+        if(arr1[i] !== arr2[i])
+            return false;
+    }
+
+    return true;
+}
+
 // filter reports by HTML input form field
 exports.find = (req, res) => {
     const options = {}
@@ -54,7 +182,6 @@ exports.find = (req, res) => {
         res.json(report);
     })
 };
-
 
 
 function extract(req, res) {
