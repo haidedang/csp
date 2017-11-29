@@ -1,0 +1,40 @@
+<mat-drawer-container class="example-container">
+  <mat-drawer #sidenav mode="side" opened="true">
+  <div class="sidebar">
+             <nav class="cd-side-nav">
+                 <ul>
+                     <li class="cd-label">Main</li>
+                     <li class="has-children overview">
+                         <a routerLink="/table">Table</a>
+
+                         <ul>
+                             <li><a href="#0">All Data</a></li>
+                             <li><a href="#0">Category 1</a></li>
+                             <li><a href="#0">Category 2</a></li>
+                         </ul>
+                     </li>
+
+                     <li class="has-children comments">
+                         <a routerLink="/chart" >Chart</a>
+
+                         <ul>
+                             <li><a href="#0">All Comments</a></li>
+                             <li><a href="#0">Edit Comment</a></li>
+                             <li><a href="#0">Delete Comment</a></li>
+                         </ul>
+                     </li>
+                 </ul>
+             </nav>
+         </div>
+</mat-drawer>
+  <mat-drawer-content>
+  <!-- <button id="th" (click) = "sidenav.toggle()"><span class="glyphicon glyphicon-th-list"></span></button> -->
+<input id="slide-sidebar" (click)="sidenav.toggle()" type="checkbox" role="button"/>
+    <label id="th"  for="slide-sidebar"><span class="glyphicon glyphicon-th-list"></span></label>
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-content>
+</mat-drawer-container>
+
+

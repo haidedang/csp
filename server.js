@@ -4,6 +4,7 @@ const express = require('express'),
     port = process.env.PORT || 4000;
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const routes = require('./routes/index');
 
@@ -14,7 +15,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout: 'layoutDataTables'}));
 app.set('view engine', 'handlebars');
 
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
