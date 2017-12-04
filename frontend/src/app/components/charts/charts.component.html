@@ -3,29 +3,23 @@
         <div class="box-header with-border">
             <h3 class="box-title">Donut Chart</h3>
             <div>
-                <button id="today">Today</button>
-                <button id="month">Month</button>
+                <button id="today" (click)="drawChart('http://localhost:4000/csp/today')">Today</button>
+                <button id="month" (click)="drawChart('http://localhost:4000/csp/distinct')">Month</button>
                 <!--<button id="year">Year </button>-->
             </div>
-
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
         </div>
-        <div class="box-body">
-            <canvas id="myChart" baseChart style="height:250px"></canvas>
+
+        <div class= "box-body" style="display: block" *ngIf="chartLoaded">
+          <canvas baseChart
+                      [data]="doughnutChartData"
+                      [labels]="doughnutChartLabels"
+                      [chartType]="doughnutChartType"
+                      (chartHover)="chartHovered($event)"
+                      (chartClick)="chartClicked($event)">
+          </canvas>
         </div>
         <!-- /.box-body -->
     </div>
 </div>
 
-<div style="display: block">
-  <canvas baseChart
-              [data]="doughnutChartData"
-              [labels]="doughnutChartLabels"
-              [chartType]="doughnutChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)"></canvas>
-</div>
+

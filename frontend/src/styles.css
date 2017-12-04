@@ -6,3 +6,7 @@ body {
   background-color:#ecf0f5;
 }
 
+.dataTables_wrapper {
+  zoom: 0.9;
+}
+

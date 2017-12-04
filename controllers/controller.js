@@ -87,6 +87,7 @@ function getData(obj){
     })
 }
 
+
 exports.findDistinctReportsByToday = (req, res) => {
     let arr = [];
     let date = new Date();

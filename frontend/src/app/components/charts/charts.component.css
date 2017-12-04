@@ -1,0 +1,40 @@
+.box{
+  position: relative;
+  border-radius: 3px;
+  background: #ffffff;
+  border-top: 3px solid #d2d6de;
+  margin-bottom: 20px;
+  width: 100%;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.box-header{
+  color: #444;
+  display: block;
+  padding: 10px;
+  position: relative;
+}
+
+.box-body {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
+  padding: 10px;
+}
+.table-bordered {
+  border: 1px solid #f4f4f4;
+}
+
+#th {
+  z-index: 2;
+  position: fixed;
+  top: 10px;
+  left: 300px;
+  -moz-transition: left 0.5s ease;
+  transition: left 0.5s ease;
+}
+
+body {
+  background: red !important;
+}

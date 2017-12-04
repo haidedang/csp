@@ -5,12 +5,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
+import {HttpClientModule} from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { DataTablesModule } from 'angular-datatables';
 
 import { TableComponent } from './components/table/table.component';
 import { ChartsComponent } from './components/charts/charts.component';
+import {ChartService} from "./services/chart.service";
 
 const appRoutes: Routes = [
   {path:'', component: TableComponent },
@@ -31,9 +33,10 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     NoopAnimationsModule,
     ChartsModule,
+    HttpClientModule,
     RouterModule.forRoot(appRoutes, {enableTracing: true})
   ],
-  providers: [],
+  providers: [ChartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

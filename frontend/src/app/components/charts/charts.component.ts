@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {HttpClient} from "@angular/common/http";
+import {BaseChartDirective} from "ng2-charts";
+
+@ViewChild(BaseChartDirective)
 
 @Component({
   selector: 'app-charts',
@@ -6,12 +10,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./charts.component.css']
 })
 export class ChartsComponent implements OnInit {
+
+  result = [];
 // Doughnut
-  public doughnutChartLabels:string[] = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
-  public doughnutChartData:number[] = [350, 450, 100];
+  public chartLoaded:boolean = false;
+  public doughnutChartLabels:string[]=[];
+  public doughnutChartData:number[] = [];
   public doughnutChartType:string = 'doughnut';
 
-
+  public dataset =[];
+  public labels=[];
 
   // events
   public chartClicked(e:any):void {
@@ -21,9 +29,34 @@ export class ChartsComponent implements OnInit {
   public chartHovered(e:any):void {
     console.log(e);
   }
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  ngOnInit() {
+
+  ngOnInit(): void {
+    this.drawChart('http://localhost:4000/csp/distinct')
+  }
+
+  public drawChart(url:string):void {
+    console.log(url);
+    this.doughnutChartData =[];
+    this.doughnutChartLabels= [];
+    this.chartLoaded = false;
+
+    this.http.get(url).subscribe(
+      info => {
+        for (let i = 0; i < Object.keys(info).length; i++) {
+          if (Object.keys(info[i]).length===0 ) {
+            this.doughnutChartData =[];
+            this.doughnutChartLabels= [];
+          }
+          else {
+            this.doughnutChartData.push(info[i].amount);
+            this.doughnutChartLabels.push(info[i].item);
+          }
+        }
+        this.chartLoaded = true;
+      }
+    )
   }
 
 }
