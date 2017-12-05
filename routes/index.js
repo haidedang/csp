@@ -10,7 +10,8 @@ router.get('/csp/today', report.findDistinctReportsByToday);
 router.get('/website', report.listAllWebsites);
 router.post('/test', report.find);
 
-router.get('/', (req, res, next) => {
+
+/*router.get('/', (req, res, next) => {
     console.log('request');
     res.render('tableContent');
 });
@@ -18,6 +19,6 @@ router.get('/', (req, res, next) => {
 router.get('/chart', (req, res, next) => {
     console.log('request');
     res.render('chart');
-});
+});*/
 
 module.exports = router;

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-table',
@@ -7,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TableComponent implements OnInit {
  dtOptions;
+ cspAmount;
+ domainAmount;
 
+  constructor(private http:HttpClient){};
 
   ngOnInit(): void {
     this.dtOptions = {
@@ -26,6 +30,19 @@ export class TableComponent implements OnInit {
       "aLengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
       'autoWidth': false
     };
+
+    this.http.get("http://localhost:4000/csp").subscribe(
+      data => {
+        this.cspAmount = Object.keys(data).length;
+      }
+    )
+
+    this.http.get("http://localhost:4000/csp/distinct").subscribe(
+      data => {
+        this.domainAmount = Object.keys(data).length;
+      }
+    )
+
   }
 
 }

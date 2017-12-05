@@ -12,7 +12,6 @@ import { DataTablesModule } from 'angular-datatables';
 
 import { TableComponent } from './components/table/table.component';
 import { ChartsComponent } from './components/charts/charts.component';
-import {ChartService} from "./services/chart.service";
 import { AppheaderComponent } from './components/appheader/appheader.component';
 import { AppmenuComponent } from './components/appmenu/appmenu.component';
 import { AppsettingsComponent } from './components/appsettings/appsettings.component';
@@ -42,7 +41,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes, {enableTracing: true})
   ],
-  providers: [ChartService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

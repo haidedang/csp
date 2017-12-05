@@ -11,9 +11,9 @@ const routes = require('./routes/index');
 let app = express();
 
 //view engine setup
-app.set('views', path.join(__dirname, 'views'));
+/*app.set('views', path.join(__dirname, 'views'));
 app.engine('handlebars', exphbs({defaultLayout: 'layoutDataTables'}));
-app.set('view engine', 'handlebars');
+app.set('view engine', 'handlebars');*/
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -23,12 +23,12 @@ app.use(cookieParser());
 // set static, public stuff assesible to the browser
 // app.use(express.static(path.join(__dirname + '/public')));
 
-app.use(express.static(path.join(__dirname, 'frontend/dist')));
+app.use(express.static(path.join(__dirname, '/frontend/dist')));
 
 app.use('/', routes);
 
-app.use('/angular', function(req, res){
-    res.sendFile(path.join(__dirname + 'frontend/src/index.html'));
+app.use('*', function(req, res){
+    res.sendFile(path.join(__dirname + '/frontend/dist/index.html'));
 });
 
 app.listen(port);

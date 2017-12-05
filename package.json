@@ -16,6 +16,7 @@
     "body-parser": "^1.18.2",
     "chart.js": "^2.7.1",
     "cookie-parser": "^1.4.3",
+    "cors": "^2.8.4",
     "datatables.net": "^1.10.16",
     "datatables.net-bs": "^1.10.16",
     "datatables.net-dt": "^1.10.16",
