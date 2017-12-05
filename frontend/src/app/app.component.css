@@ -1,3 +1,6 @@
+.innerbody{
+  margin-right: 3em;
+}
 
 #slide-sidebar {
   visibility: hidden;
@@ -5,7 +8,6 @@
 
 .mat-drawer-container{
   height:100vh;
-
 }
 
 .table-bordered {
@@ -16,7 +18,7 @@
   z-index: 2;
   position: fixed;
   top: 10px;
-  left: 215px;
+  left: 70px;
   -moz-transition: left 0.5s ease;
   transition: left 0.5s ease;
 }
@@ -146,6 +148,17 @@ mat-drawer {
   display: none;
 }
 @media only screen and (min-width: 768px) {
+
+  #th {
+    z-index: 2;
+    position: fixed;
+    top: 10px;
+    left: 120px;
+    -moz-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+  }
+
+
   .cd-side-nav {
     position: relative;
     float: left;
@@ -216,6 +229,15 @@ mat-drawer {
   }
 }
 @media only screen and (min-width: 1170px) {
+  #th {
+    z-index: 2;
+    position: fixed;
+    top: 10px;
+    left: 215px;
+    -moz-transition: left 0.5s ease;
+    transition: left 0.5s ease;
+  }
+
   .cd-side-nav {
     width: 200px;
   }

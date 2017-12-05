@@ -29,8 +29,8 @@ export class ChartsComponent implements OnInit {
   public chartHovered(e:any):void {
     console.log(e);
   }
-  constructor(private http: HttpClient) { }
 
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
     this.drawChart('http://localhost:4000/csp/distinct')
@@ -46,14 +46,15 @@ export class ChartsComponent implements OnInit {
       info => {
         for (let i = 0; i < Object.keys(info).length; i++) {
           if (Object.keys(info[i]).length===0 ) {
-            this.doughnutChartData =[];
-            this.doughnutChartLabels= [];
+              continue;
           }
           else {
+
             this.doughnutChartData.push(info[i].amount);
             this.doughnutChartLabels.push(info[i].item);
           }
         }
+        console.log(this.doughnutChartData);
         this.chartLoaded = true;
       }
     )
