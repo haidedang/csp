@@ -23,7 +23,8 @@ export class TableComponent implements OnInit {
         { "data": "original-policy"},
         { "data": "date" }
       ],
-      "aLengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]]
+      "aLengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
+      'autoWidth': false
     };
   }
 

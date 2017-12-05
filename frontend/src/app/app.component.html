@@ -1,4 +1,5 @@
-<mat-drawer-container class="example-container">
+
+   <!--  <mat-drawer-container class="example-container">
   <mat-drawer #sidenav mode="side" opened="true">
   <div class="sidebar">
              <nav class="cd-side-nav">
@@ -29,6 +30,8 @@
 </mat-drawer>
   <mat-drawer-content>
   <!-- <button id="th" (click) = "sidenav.toggle()"><span class="glyphicon glyphicon-th-list"></span></button> -->
+
+   <!--
     <input id="slide-sidebar"  type="checkbox" role="button"/>
     <label id="th" (click) = "sidenav.toggle()" for="slide-sidebar"><span class="glyphicon glyphicon-th-list"></span></label>
     <div class="innerbody">
@@ -38,3 +41,9 @@
 </mat-drawer-container>
 
 
+-->
+
+<app-appheader></app-appheader>
+<app-appmenu></app-appmenu>
+<router-outlet></router-outlet>
+<app-appsettings></app-appsettings>

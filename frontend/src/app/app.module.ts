@@ -13,6 +13,9 @@ import { DataTablesModule } from 'angular-datatables';
 import { TableComponent } from './components/table/table.component';
 import { ChartsComponent } from './components/charts/charts.component';
 import {ChartService} from "./services/chart.service";
+import { AppheaderComponent } from './components/appheader/appheader.component';
+import { AppmenuComponent } from './components/appmenu/appmenu.component';
+import { AppsettingsComponent } from './components/appsettings/appsettings.component';
 
 const appRoutes: Routes = [
   {path:'', component: TableComponent },
@@ -24,7 +27,10 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     TableComponent,
-    ChartsComponent
+    ChartsComponent,
+    AppheaderComponent,
+    AppmenuComponent,
+    AppsettingsComponent
   ],
   imports: [
     BrowserModule,

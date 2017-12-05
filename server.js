@@ -21,9 +21,15 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 
 // set static, public stuff assesible to the browser
-app.use(express.static(path.join(__dirname + '/public')));
+// app.use(express.static(path.join(__dirname + '/public')));
+
+app.use(express.static(path.join(__dirname, 'frontend/dist')));
 
 app.use('/', routes);
+
+app.use('/angular', function(req, res){
+    res.sendFile(path.join(__dirname + 'frontend/src/index.html'));
+});
 
 app.listen(port);
 console.log('CSP API server started on:' + port);
