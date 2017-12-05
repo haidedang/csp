@@ -1,0 +1,28 @@
+<div class="content-wrapper">
+
+    <section class="content">
+      <div class="box box-danger">
+          <div class="box-header with-border">
+              <h3 class="box-title">Donut Chart</h3>
+              <div>
+                  <button id="today" (click)="drawChart('http://localhost:4000/csp/today')">Today</button>
+                  <button id="month" (click)="drawChart('http://localhost:4000/csp/distinct')">Month</button>
+                  <!--<button id="year">Year </button>-->
+              </div>
+          </div>
+
+          <div class= "box-body" style="display: block" *ngIf="chartLoaded">
+            <canvas baseChart
+                        [data]="doughnutChartData"
+                        [labels]="doughnutChartLabels"
+                        [chartType]="doughnutChartType"
+                        (chartHover)="chartHovered($event)"
+                        (chartClick)="chartClicked($event)">
+            </canvas>
+          </div>
+          <!-- /.box-body -->
+      </div>
+    </section>
+</div>
+
+

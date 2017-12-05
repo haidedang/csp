@@ -1,0 +1,51 @@
+
+<div class = "content-wrapper">
+
+  <section class="content-header">
+    <h3> CSP Reports</h3>
+  </section>
+
+  <section class="content">
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+
+                <div class="info-box-content">
+                  <span class="info-box-text">CSP Reports </span>
+                  <span class="info-box-number">{{cspAmount}}<small></small></span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+    </div>
+
+    <div class="col-md-3 col-sm-6 col-xs-12">
+              <div class="info-box">
+                <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
+                <div class="info-box-content">
+                  <span class="info-box-text">NO. Domains</span>
+                  <span class="info-box-number">{{domainAmount}}</span>
+                </div>
+                <!-- /.info-box-content -->
+              </div>
+              <!-- /.info-box -->
+    </div>
+
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="box">
+          <div class="box-body">
+            <table datatable [dtOptions]="dtOptions" id="csp" class="table-responsive table-bordered table-striped">
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+
+
+

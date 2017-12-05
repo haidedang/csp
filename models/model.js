@@ -6,7 +6,7 @@
 const mongoose = require('mongoose');
 const url = require('url');
 
-mongoose.connect('mongodb://localhost:27017/cspReports', {useMongoClient: true});
+mongoose.connect('mongodb://localhost:27017/cspTest', {useMongoClient: true});
 mongoose.set('debug', true);
 
 let cspSchema = new mongoose.Schema({
