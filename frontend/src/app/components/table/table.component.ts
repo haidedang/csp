@@ -20,12 +20,18 @@ export class TableComponent implements OnInit {
         "dataSrc": ""
       },
       "columns": [
-        { "data": "domain" },
-        { "data": "document-uri" },
-        { "data": "blocked-uri" },
-        { "data": "violated-directive" },
-        { "data": "original-policy"},
-        { "data": "date" }
+        { "title": "domain",
+          "data": "domain" },
+        { "title": "document-uri",
+          "data": "document-uri" },
+        { "title": "blocked-uri",
+          "data": "blocked-uri" },
+        { "title": "violated-directive",
+          "data": "violated-directive" },
+        { "title": "original-policy",
+          "data": "original-policy"},
+        { "title": "date",
+          "data": "date" }
       ],
       "aLengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
       'autoWidth': false
