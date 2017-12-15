@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import {ChartService} from "../../chart.service";
+import {joinTestLogs} from "protractor/built/util";
 
 @Component({
   selector: 'app-chart-table',
@@ -10,23 +11,32 @@ export class ChartTableComponent implements OnInit {
   public   dtOptions;
   public   tableLoaded:boolean= false;
   public  domain:string;
+  public label: string;
 
-  constructor(){
-
+  constructor(private chartService: ChartService){
   };
 
-  ngOnInit(): void {
-
-    this.renderTable("youtube.com");
+  getLabel():string {
+    return this.chartService.getLabel();
 
   }
 
-  public renderTable(domain:string):void {
-    this.domain = domain;
+  ngOnInit(): void {
+    this.getLabel();
+    this.renderTable();
+
+  }
+
+  public renderTable():void {
     console.log('render');
+
+    // const foo = this.getLabel()
+    const foo = this.getLabel();
+
+
    this.dtOptions = {
      "ajax": {
-       "url": "http://localhost:4000/csp/"+domain,
+       "url": "http://localhost:4000/csp/"+ foo,
        "dataSrc": ""
      },
      "columns": [
@@ -59,6 +69,7 @@ export class ChartTableComponent implements OnInit {
      'autoWidth': false
 
    }
+   console.log('bar', this.dtOptions)
 
    this.tableLoaded= true;
   }

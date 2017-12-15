@@ -17,6 +17,7 @@ import { AppmenuComponent } from './components/appmenu/appmenu.component';
 import { AppsettingsComponent } from './components/appsettings/appsettings.component';
 import { BarComponent } from './components/bar/bar.component';
 import { ChartTableComponent } from './components/chart-table/chart-table.component';
+import {ChartService} from "./chart.service";
 
 const appRoutes: Routes = [
   {path:'', component: TableComponent },
@@ -45,7 +46,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes, {enableTracing: true})
   ],
-  providers: [],
+  providers: [ChartService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

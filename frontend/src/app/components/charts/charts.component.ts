@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BaseChartDirective} from "ng2-charts";
 import {ChartTableComponent} from "../chart-table/chart-table.component";
+import {ChartService} from "../../chart.service";
 
 @ViewChild(BaseChartDirective)
 
@@ -20,7 +21,7 @@ export class ChartsComponent implements OnInit {
   public doughnutChartData:number[] = [];
   public doughnutChartType:string = 'doughnut';
   public domain:any[]=[];
-  public static clickedLabel:string;
+  public static clickedLabel:string="";
 
   public dataset =[];
   public labels=[];
@@ -29,8 +30,8 @@ export class ChartsComponent implements OnInit {
   public chartClicked(e:any):void {
     ChartsComponent.clickedLabel= this.doughnutChartLabels[e.active["0"]._index];
     this.drawChart('http://localhost:4000/csp/'+ ChartsComponent.clickedLabel+'/month');
-    let table = new ChartTableComponent("youtub");
-    table.ngOnInit();
+     let table = new ChartTableComponent(this.chartService);
+     table.ngOnInit();
 
   }
 
@@ -39,7 +40,7 @@ export class ChartsComponent implements OnInit {
     console.log(e);
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private chartService:ChartService) { }
 
   ngOnInit(): void {
     console.log('charts');
@@ -82,5 +83,7 @@ export class ChartsComponent implements OnInit {
       }
     )
   }
+
+
 
 }

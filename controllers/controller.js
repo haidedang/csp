@@ -16,6 +16,8 @@ exports.listAllReports = (req, res) => {
 };
 
 exports.listAllReportsFromDomain = (req,res) => {
+    console.log('domain: ', req.params.domain)
+    
     Report.find({"domain": req.params.domain}).then(report => {
             res.json(report);
     })
