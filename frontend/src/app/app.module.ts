@@ -15,6 +15,8 @@ import { ChartsComponent } from './components/charts/charts.component';
 import { AppheaderComponent } from './components/appheader/appheader.component';
 import { AppmenuComponent } from './components/appmenu/appmenu.component';
 import { AppsettingsComponent } from './components/appsettings/appsettings.component';
+import { BarComponent } from './components/bar/bar.component';
+import { ChartTableComponent } from './components/chart-table/chart-table.component';
 
 const appRoutes: Routes = [
   {path:'', component: TableComponent },
@@ -29,7 +31,9 @@ const appRoutes: Routes = [
     ChartsComponent,
     AppheaderComponent,
     AppmenuComponent,
-    AppsettingsComponent
+    AppsettingsComponent,
+    BarComponent,
+    ChartTableComponent
   ],
   imports: [
     BrowserModule,

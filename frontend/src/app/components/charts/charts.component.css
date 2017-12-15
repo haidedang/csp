@@ -1,0 +1,9 @@
+.tableContainer{
+  width:90%;
+  overflow-x: scroll;
+  zoom:0.9;
+}
+
+.info-box{
+  margin-left: 20px;
+}

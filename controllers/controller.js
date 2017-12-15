@@ -10,11 +10,16 @@ const dateFormat = require('dateformat');
 
 exports.listAllReports = (req, res) => {
     console.log('request');
-    Report.find({}, function (err, report) {
-        if (err) res.send(err);
+    Report.find({}).then(report => {
         res.json(report);
     })
 };
+
+exports.listAllReportsFromDomain = (req,res) => {
+    Report.find({"domain": req.params.domain}).then(report => {
+            res.json(report);
+    })
+}
 
 exports.listAllWebsites = (req, res) => {
     Report.find({}, (err, report) => {
@@ -40,14 +45,10 @@ exports.createReport = (req, res) => {
     });
 };
 
+/*exports.findDistinctValues = (req, res) => {
 
-/**
- *
- * @return Array of  all Objects with distinctive domain name
- */
-exports.findDistinctValues = (req, res) => {
-    let arr = [];
     Report.distinct('domain', (err, report) => {
+        let arr = [];
         console.log(report);
         let i = 0;
 
@@ -71,7 +72,62 @@ exports.findDistinctValues = (req, res) => {
         }
         call(0);
     })
+};*/
+
+/**
+ *
+ * @return Array of  all Objects with distinctive domain name and total amount
+ */
+exports.findDistinctValues = (req, res) => {
+
+    Report.distinct('domain', (err, report) => {
+        distinct(report,res,'domain');
+    })
 };
+
+/**
+ * map amount to distinct array element
+ * @param req
+ * @param res
+ */
+function distinct(report,res, param){
+    let arr=[];
+    let length= 0;
+    call(report, 0);
+
+    function call(array, i) {
+        console.log('reached');
+        getData(param, array[i]).then((item) => {
+            length = item.length;
+            let obj = {item: item[0][param], amount: length};
+            arr.push(obj);
+            i++;
+            if (i < array.length) {
+                call(array,i);
+            } else{
+                console.log(arr);
+                res.send(arr);
+            }
+        })
+        ;
+    }
+}
+
+
+
+
+exports.findDomainReportsByToday= (req , res) => {
+
+}
+
+
+exports.findDomainReportsByMonth = (req, res) => {
+    Report.find({'domain': req.params.domain}).distinct('document-uri').then(report => {
+            console.log(report);
+            distinct(report, res, 'document-uri');
+        }
+    )
+}
 
 /**
  *
@@ -79,15 +135,23 @@ exports.findDistinctValues = (req, res) => {
  * @returns {Promise}
  */
 
-function getData(obj){
+function getData(param, obj){
     return new Promise((resolve, reject) => {
-        Report.find({'domain': obj}, (err, result) => {
+        let temp  ={};
+        temp[param]= obj;
+        Report.find(temp, (err, result) => {
             resolve(result);
         });
     })
 }
 
-
+/**
+ *
+ * @param req
+ * @param res
+ *  sends an Array of distinct Reports being submitted by today
+ *  ex. [{item: "sevenval.com, amount:"2"}]
+ */
 exports.findDistinctReportsByToday = (req, res) => {
     let arr = [];
     let date = new Date();

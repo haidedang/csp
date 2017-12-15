@@ -11,6 +11,7 @@ export class TableComponent implements OnInit {
  cspAmount;
  domainAmount;
 
+
   constructor(private http:HttpClient){};
 
   ngOnInit(): void {
@@ -20,23 +21,35 @@ export class TableComponent implements OnInit {
         "dataSrc": ""
       },
       "columns": [
-        { "title": "domain",
-          "data": "domain" },
-        { "title": "document-uri",
-          "data": "document-uri" },
-        { "title": "blocked-uri",
-          "data": "blocked-uri" },
-        { "title": "violated-directive",
-          "data": "violated-directive" },
-        { "title": "original-policy",
-          "data": "original-policy"},
-        { "title": "date",
-          "data": "date" }
+        {
+          "title": "domain",
+          "data": "domain"
+        },
+        {
+          "title": "document-uri",
+          "data": "document-uri"
+        },
+        {
+          "title": "blocked-uri",
+          "data": "blocked-uri"
+        },
+        {
+          "title": "violated-directive",
+          "data": "violated-directive"
+        },
+        {
+          "title": "original-policy",
+          "data": "original-policy"
+        },
+        {
+          "title": "date",
+          "data": "date"
+        }
       ],
-      "aLengthMenu": [[5,10, 25, 50, -1], [5,10, 25, 50, "All"]],
+      "aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
       'autoWidth': false
-    };
 
+  }
     this.http.get("http://localhost:4000/csp").subscribe(
       data => {
         this.cspAmount = Object.keys(data).length;

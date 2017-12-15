@@ -1,6 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {BaseChartDirective} from "ng2-charts";
+import {ChartTableComponent} from "../chart-table/chart-table.component";
 
 @ViewChild(BaseChartDirective)
 
@@ -11,20 +12,28 @@ import {BaseChartDirective} from "ng2-charts";
 })
 export class ChartsComponent implements OnInit {
 
+
   result = [];
 // Doughnut
   public chartLoaded:boolean = false;
   public doughnutChartLabels:string[]=[];
   public doughnutChartData:number[] = [];
   public doughnutChartType:string = 'doughnut';
+  public domain:any[]=[];
+  public static clickedLabel:string;
 
   public dataset =[];
   public labels=[];
 
   // events
   public chartClicked(e:any):void {
-    console.log(e);
+    ChartsComponent.clickedLabel= this.doughnutChartLabels[e.active["0"]._index];
+    this.drawChart('http://localhost:4000/csp/'+ ChartsComponent.clickedLabel+'/month');
+    let table = new ChartTableComponent("youtub");
+    table.ngOnInit();
+
   }
+
 
   public chartHovered(e:any):void {
     console.log(e);
@@ -33,7 +42,21 @@ export class ChartsComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.drawChart('http://localhost:4000/csp/distinct')
+    console.log('charts');
+    this.drawChart('http://localhost:4000/csp/distinct');
+    this.http.get('http://localhost:4000/csp/distinct').subscribe(
+      info => {
+          console.log(info);
+        let temp =  Object.keys(info).map(key => info[key]);
+          temp.forEach( item => {
+            this.domain.push(
+              {"domain": item["item"],
+               "query": 'http://localhost:4000/csp/'+ item["item"]+'/month'
+            });
+          })
+        console.log(this.domain);
+      }
+    )
   }
 
   public drawChart(url:string):void {

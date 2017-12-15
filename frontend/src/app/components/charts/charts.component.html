@@ -8,18 +8,55 @@
                   <button id="today" (click)="drawChart('http://localhost:4000/csp/today')">Today</button>
                   <button id="month" (click)="drawChart('http://localhost:4000/csp/distinct')">Month</button>
                   <!--<button id="year">Year </button>-->
+                  <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Choose Subdomain
+                    <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                      <li *ngFor="let domain of domain">
+                        <a (click)= "drawChart(domain['query'])">{{domain['domain']}}</a>
+                      </li>
+                    </ul>
+                  </div>
+
               </div>
           </div>
 
-          <div class= "box-body" style="display: block" *ngIf="chartLoaded">
-            <canvas baseChart
-                        [data]="doughnutChartData"
-                        [labels]="doughnutChartLabels"
-                        [chartType]="doughnutChartType"
-                        (chartHover)="chartHovered($event)"
-                        (chartClick)="chartClicked($event)">
-            </canvas>
+          <div class="row">
+
+            <div class="  box-body col-xs-11 col-lg-3">
+                          <div class="info-box">
+                            <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
+
+                            <div class="info-box-content">
+                              <span class="info-box-text">Today </span>
+                              <span class="info-box-number">{{cspAmount}}<small></small></span>
+                            </div>
+                            <!-- /.info-box-content -->
+                          </div>
+                          <!-- /.info-box -->
+
+            </div>
+
+
+
+             <div class= "box-body col-lg-9 " *ngIf="chartLoaded">
+                        <canvas baseChart
+                                    [data]="doughnutChartData"
+                                    [labels]="doughnutChartLabels"
+                                    [chartType]="doughnutChartType"
+                                    (chartHover)="chartHovered($event)"
+                                    (chartClick)="chartClicked($event)">
+                        </canvas>
+             </div>
+
+             <div class ="box-body col-lg-12">
+                <div class="container tableContainer"><app-chart-table ></app-chart-table> </div>
+             </div>
+
           </div>
+
+
+
           <!-- /.box-body -->
       </div>
     </section>
