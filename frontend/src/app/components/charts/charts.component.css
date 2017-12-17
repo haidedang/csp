@@ -7,3 +7,18 @@
 .info-box{
   margin-left: 20px;
 }
+
+.body{
+  overflow-x: scroll;
+
+
+  margin-right:15px;
+}
+
+.box{
+  width:100%;
+}
+
+
+
+

@@ -16,7 +16,7 @@ exports.listAllReports = (req, res) => {
 };
 
 exports.listAllReportsFromDomain = (req,res) => {
-    console.log('domain: ', req.params.domain)
+    console.log('domain: ', req.params.domain);
     
     Report.find({"domain": req.params.domain}).then(report => {
             res.json(report);
@@ -98,7 +98,6 @@ function distinct(report,res, param){
     call(report, 0);
 
     function call(array, i) {
-        console.log('reached');
         getData(param, array[i]).then((item) => {
             length = item.length;
             let obj = {item: item[0][param], amount: length};

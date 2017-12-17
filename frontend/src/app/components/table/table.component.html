@@ -38,7 +38,21 @@
       <div class="col-xs-12">
         <div class="box">
           <div class="box-body">
-            <table datatable [dtOptions]="dtOptions" id="csp" class="table-responsive table-bordered table-striped">
+            <table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>First name</th>
+                <th>Last name</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let domain of domains">
+                <td>{{ domain.domain }}</td>
+                <td>{{ domain["document-uri"]}}</td>
+                <td>{{ domain["blocked-uri"] }}</td>
+              </tr>
+            </tbody>
             </table>
           </div>
         </div>

@@ -6,6 +6,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {RouterModule, Routes} from '@angular/router';
 import { ChartsModule } from 'ng2-charts';
 import {HttpClientModule} from '@angular/common/http';
+import {HttpModule} from "@angular/http";
 
 import { AppComponent } from './app.component';
 import { DataTablesModule } from 'angular-datatables';
@@ -44,7 +45,8 @@ const appRoutes: Routes = [
     NoopAnimationsModule,
     ChartsModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: true})
+    HttpModule,
+    RouterModule.forRoot(appRoutes, {enableTracing: false})
   ],
   providers: [ChartService],
   bootstrap: [AppComponent]
