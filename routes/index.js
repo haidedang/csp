@@ -13,7 +13,7 @@ router.get('/csp/:domain/month', report.findDomainReportsByMonth);
 router.get('/website', report.listAllWebsites);
 router.post('/test', report.find);
 
-
+router.get('/testdata', report.sendRequest);
 /*router.get('/', (req, res, next) => {
     console.log('request');
     res.render('tableContent');

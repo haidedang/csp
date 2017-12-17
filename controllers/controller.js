@@ -6,6 +6,9 @@
 const url = require('url');
 const Report = require('../models/model');
 const dateFormat = require('dateformat');
+const request = require('request-promise');
+const reports = require('./reports.js');
+
 
 
 exports.listAllReports = (req, res) => {
@@ -249,7 +252,6 @@ exports.find = (req, res) => {
     })
 };
 
-
 function extract(req, res) {
     let obj = {};
 
@@ -273,4 +275,41 @@ function extract(req, res) {
     obj["date"] = dateFormat(date);
 
     return obj;
+}
+
+function sendData(){
+    let setTimeInterval= 1000;
+    var pointer= 0;
+
+    function sendRequest(i){
+
+        setTimeout(function(){
+            const options = {
+                method: 'POST',
+                uri: 'http://localhost:4000/csp',
+                body: reports.csp[i],
+                json: true
+            }
+
+            request(options)
+                .then(function(response){
+                    console.log('success');
+                    console.log(response);
+                }).catch(function(err){
+                console.log('error');
+            })
+
+            i= i+1;
+            if( i< reports.csp.length){
+                sendRequest(i);
+            } else return true;
+
+        }, 10);
+
+    }
+    sendRequest(pointer);
+}
+
+exports.sendRequest= (req,res)=>{
+    sendData();
 }

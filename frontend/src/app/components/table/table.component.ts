@@ -32,7 +32,7 @@ export class TableComponent implements OnInit {
   ngOnInit(): void {
     this.dtOptions = {
       pagingType: 'full_numbers',
-      pageLength: 2
+      pageLength: 6
     };
     this.http.get('http://localhost:4000/csp')
       .subscribe(domains => {
@@ -43,45 +43,6 @@ export class TableComponent implements OnInit {
         // Calling the DT trigger to manually render the table
         this.dtTrigger.next();
       });
-  }
-
-
-  /*ngOnInit(): void {
-    this.dtOptions = {
-      "ajax": {
-        "url": "http://localhost:4000/csp",
-        "dataSrc": ""
-      },
-      "columns": [
-        {
-          "title": "domain",
-          "data": "domain"
-        },
-        {
-          "title": "document-uri",
-          "data": "document-uri"
-        },
-        {
-          "title": "blocked-uri",
-          "data": "blocked-uri"
-        },
-        {
-          "title": "violated-directive",
-          "data": "violated-directive"
-        },
-        {
-          "title": "original-policy",
-          "data": "original-policy"
-        },
-        {
-          "title": "date",
-          "data": "date"
-        }
-      ],
-      "aLengthMenu": [[5, 10, 25, 50, -1], [5, 10, 25, 50, "All"]],
-      'autoWidth': false
-
-  }
     this.http.get("http://localhost:4000/csp").subscribe(
       data => {
         this.cspAmount = Object.keys(data).length;
@@ -90,10 +51,11 @@ export class TableComponent implements OnInit {
 
     this.http.get("http://localhost:4000/csp/distinct").subscribe(
       data => {
-        this.domainAmount = Object.keys(data).length;
+        console.log(data);
+        this.domainAmount = JSON.parse(data["_body"]).length;
+        console.log(this.domainAmount);
       }
     )
-
-  }*/
+  }
 
 }
