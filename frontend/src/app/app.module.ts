@@ -21,7 +21,7 @@ import { ChartTableComponent } from './components/chart-table/chart-table.compon
 import {ChartService} from "./chart.service";
 
 const appRoutes: Routes = [
-  {path:'', component: TableComponent },
+  {path:'', component: ChartsComponent },
   {path:'table', component: TableComponent},
   {path: 'chart', component: ChartsComponent}
 ]
